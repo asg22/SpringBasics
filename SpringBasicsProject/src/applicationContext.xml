@@ -9,6 +9,8 @@
 
 	<!-- load the properties file -->
 	<context:property-placeholder location="classpath:values.properties"/>
+	<!-- Enable Component Scanning -->
+	<context:component-scan base-package="io.spring.componentScanning"></context:component-scan>
     <!-- Define your beans here -->
     <bean id="myFortune" class="io.spring.DIconstructorInjection.HappyFortuneService"></bean>
     
