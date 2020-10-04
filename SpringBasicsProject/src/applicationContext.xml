@@ -42,6 +42,24 @@
     <property name="fortuneService" ref="myFortuneSetterInjectionusingProps"></property>
     <property name="desc" value="${reactJs.desc}"></property>
     </bean>
+    
+    <!-- Bean Scopes -->
+    <bean id="ReactJSTopicsetterInjectionSingltonObj" class="io.spring.beanScopes.ReactJSFramework">
+    <!-- Setter Injection -->
+    <property name="desc" value="${reactJs.desc}"></property>
+    </bean>
+    
+     <bean id="ReactJSTopicsetterInjectionPrototypeObj" class="io.spring.beanScopes.ReactJSFramework" scope="prototype">
+    <!-- Setter Injection -->
+    <property name="desc" value="${reactJs.desc}"></property>
+    </bean>
+    
+    <!-- Bean Life Cycle -->
+    <bean id="ReactJSBeanLifeCycle" class="io.spring.beanLifeCycle.ReactJSFramework"
+     init-method="startUpMethod" destroy-method="cleanUpMethod">
+    <!-- Setter Injection -->
+    <property name="desc" value="${reactJs.desc}"></property>
+    </bean>
 </beans>
 
 
