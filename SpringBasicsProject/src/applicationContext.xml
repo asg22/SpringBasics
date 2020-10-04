@@ -7,11 +7,40 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 
+	<!-- load the properties file -->
+	<context:property-placeholder location="classpath:values.properties"/>
     <!-- Define your beans here -->
+    <bean id="myFortune" class="io.spring.DIconstructorInjection.HappyFortuneService"></bean>
     
     <bean id="javaTopic" class="io.spring.ioc.JavaProgramming">
     </bean>
      <bean id="springTopic" class="io.spring.ioc.SpringFramework">
+    </bean>
+    
+    <!-- Constructor Injection -->
+    <bean id="javaTopicConstructorInjection" class="io.spring.DIconstructorInjection.JavaProgramming">
+    <!-- Constructor Injection -->
+    <constructor-arg ref="myFortune"></constructor-arg>
+    </bean>
+     <bean id="springTopicConstructorInjection" class="io.spring.DIconstructorInjection.SpringFramework">
+     <constructor-arg ref="myFortune"></constructor-arg>
+    </bean>
+    
+    <!-- Setter Injection -->
+    <bean id="myFortuneSetterInjection" class="io.spring.DIsetterInjection.HappyFortuneService"></bean>
+    <bean id="ReactJSTopicsetterInjection" class="io.spring.DIsetterInjection.ReactJSFramework">
+    <!-- Setter Injection -->
+    <property name="fortuneService" ref="myFortuneSetterInjection"></property>
+    <property name="desc" value="This is React JS framework"></property>
+    </bean>
+    
+    
+    <!-- Setter Injection using properties file -->
+    <bean id="myFortuneSetterInjectionusingProps" class="io.spring.useOfpropertiesFile.HappyFortuneService"></bean>
+    <bean id="ReactJSTopicsetterInjectionUsingProps" class="io.spring.useOfpropertiesFile.ReactJSFramework">
+    <!-- Setter Injection -->
+    <property name="fortuneService" ref="myFortuneSetterInjectionusingProps"></property>
+    <property name="desc" value="${reactJs.desc}"></property>
     </bean>
 </beans>
 
