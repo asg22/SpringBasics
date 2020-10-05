@@ -10,7 +10,7 @@
 	<!-- load the properties file -->
 	<context:property-placeholder location="classpath:values.properties"/>
 	<!-- Enable Component Scanning -->
-	<context:component-scan base-package="io.spring.componentScanning,io.spring.constructorInjectionWithAnnotations,io.spring.setterInjectionWithAnnotations,io.spring.fieldInjectionWithAnnotations"></context:component-scan>
+	<context:component-scan base-package="io.spring.beanLifeCycleWithAnnotations,io.spring.beanScopeWithAnnotation,io.spring.qualifiers,io.spring.componentScanning,io.spring.constructorInjectionWithAnnotations,io.spring.setterInjectionWithAnnotations,io.spring.fieldInjectionWithAnnotations"></context:component-scan>
     <!-- Define your beans here -->
     <bean id="myFortune" class="io.spring.DIconstructorInjection.HappyFortuneService"></bean>
     
