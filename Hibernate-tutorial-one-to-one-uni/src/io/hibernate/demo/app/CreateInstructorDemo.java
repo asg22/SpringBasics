@@ -4,35 +4,34 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import io.hibernate.demo.entity.Instructor;
+import io.hibernate.demo.entity.InstructorDetail;
 import io.hibernate.demo.entity.Student;
 
-public class ReadStudentDemo {
+public class CreateInstructorDemo {
 
 	
 	public static void main(String[] args) {
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
-									.addAnnotatedClass(Student.class).buildSessionFactory();
+									.addAnnotatedClass(Instructor.class)
+									.addAnnotatedClass(InstructorDetail.class).buildSessionFactory();
 		
 		Session session = factory.getCurrentSession();
 		
 		try
 		{
-			Student stud = new Student("Akshay", "Gawade", "test@gamil.com");
+			//inserts instructordetails first then instructor
+			InstructorDetail insDetail= new InstructorDetail("Code with AGS", "Coding");
 			
+			Instructor ins = new Instructor("Akshay", "Gawade", "test@test.com");
+			
+			ins.setInstructorDetail(insDetail);
 			session.beginTransaction();
-			
-			int t = (int)session.save(stud);
-			
-			System.out.println("id generated is "+t);
+
+			session.save(ins);
 			
 			session.getTransaction().commit();
-			
-			session=factory.getCurrentSession();
-			session.beginTransaction();
-			Student s = session.get(Student.class, null);
-			
-			System.out.println(s.toString());
-			session.getTransaction().commit();
+				
 		}
 		catch(Exception e)
 		{
