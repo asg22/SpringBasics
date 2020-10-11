@@ -16,10 +16,19 @@ public class AOPDemo {
 		
 		InfoDAO info = context.getBean("infoDAO",InfoDAO.class);
 		account.addAccount("Askk");
+		//account.findAccounts();
+		try
+		{
+			System.out.println(account.findAccounts());
+		}
+		catch(Exception e)
+		{
+			System.out.println("caught exception"+e.getMessage());
+		}
 		//account.applyToDebitCard();
-		account.setMoney(500);
-		System.out.println(account.getMoney());
-		info.addAccount();
+		//account.setMoney(500);
+		//System.out.println(account.getMoney());
+		//info.addAccount();
 		context.close();
 	}
 }
