@@ -1,0 +1,36 @@
+server:
+  compression:
+    enabled: true
+    mime-types: text/html,text/xml,text/css,text/plain,application/json,application/xml,application/javascript
+  tomcat:
+    accesslog:
+      enabled: true
+      buffered: false
+      prefix: stdout
+      suffix:
+      file-date-format:
+      directory: /dev
+      pattern: "{\"ACCESS_LOG\":{\"time_stamp\":\"%{yyyy-MM-dd HH:mm:ss}t\", \"remote_ip\":\"%{True-Client-IP}i\", \"path\":\"%r\", \"status\":\"%s\", \"bytes\":\"%b\", \"dur_secs\":\"%T\"}}"
+    min-spare-threads: 240 # Tomcat 8.5 default is 25
+    max-threads:       240 # Tomcat 8.5 default is 200
+  servlet:
+    context-path: /
+  port: 8081
+
+
+spring:
+  profiles: test,default
+demo:
+  jdbc-fetch-row-size: 5000
+  datasource:
+   mvh:
+     type: com.zaxxer.hikari.HikariDataSource
+     poolName: poolMvh360
+     jdbc-url: "jdbc:mysql://localhost:3306/spring_sec?useSSL=false"
+     driver-class-name: com.mysql.cj.jdbc.Driver
+     cache-prep-stmts: true
+     prep-stmt-cache-size: 250
+     prep-stmt-cache-sql-limit: 2048
+     idleTimeout: 900000 # 15 minutes
+     maxLifetime: 900000 # 15 minutes
+     maximumPoolSize: 44     
